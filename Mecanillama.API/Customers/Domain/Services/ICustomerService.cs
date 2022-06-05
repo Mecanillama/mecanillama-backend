@@ -3,7 +3,7 @@ using Mecanillama.API.Customers.Domain.Services.Communication;
 
 namespace Mecanillama.API.Customers.Domain.Services;
 
-public interface ICategoryService
+public interface ICustomerService
 {
     Task<IEnumerable<Customer>> ListAsync();
     Task<CustomerResponse> SaveAsync(Customer category);
