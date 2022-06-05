@@ -18,12 +18,11 @@
 
     <ItemGroup>
       <Folder Include="Appointments" />
-      <Folder Include="Customers\Domain" />
+      <Folder Include="Customers\Domain\Repositories" />
       <Folder Include="Customers\Mapping" />
       <Folder Include="Customers\Persistence" />
       <Folder Include="Customers\Resources" />
       <Folder Include="Mechanics" />
-      <Folder Include="Shared" />
     </ItemGroup>
 
 </Project>
