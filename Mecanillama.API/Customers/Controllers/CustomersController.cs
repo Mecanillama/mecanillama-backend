@@ -3,10 +3,9 @@ using Mecanillama.API.Customers.Domain.Model;
 using Microsoft.AspNetCore.Mvc;
 using Mecanillama.API.Customers.Domain.Services;
 using Mecanillama.API.Customers.Resources;
-
+using Mecanillama.API.Shared.Extensions;
 
 namespace Mecanillama.API.Customers.Controllers;
-
 
 [Route("/api/v1/[controller]")] 
 public class CustomersController : ControllerBase {
@@ -43,7 +42,34 @@ public class CustomersController : ControllerBase {
 
         return Ok(categoryResource);
     }
+    [HttpPut("{id}")]
+    public async Task<IActionResult> PutAsync(int id, [FromBody] SaveCustomerResource resource)
+    {
+        if (!ModelState.IsValid)
+            return BadRequest(ModelState.GetErrorMessages());
+        
+        var customer = _mapper.Map<SaveCustomerResource, Customer>(resource);
+
+        var result = await _customerService.UpdateAsync(id, customer);
+        
+        if (!result.Success)
+            return BadRequest(result.Message);
+
+        var customerResource = _mapper.Map<Customer, CustomerResource>(result.Resource);
+
+        return Ok(customerResource);
+    }
     
-    
-    
+    [HttpDelete("{id}")]
+    public async Task<IActionResult> DeleteAsync(int id)
+    {
+        var result = await _customerService.DeleteAsync(id);
+        
+        if (!result.Success)
+            return BadRequest(result.Message);
+
+        var customerResource = _mapper.Map<Customer, CustomerResource>(result.Resource);
+
+        return Ok(customerResource);
+    }
 }
