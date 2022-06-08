@@ -1,4 +1,5 @@
-﻿using Mecanillama.API.Customers.Domain.Model;
+﻿using Mecanillama.API.Appointments.Domain.Models;
+using Mecanillama.API.Customers.Domain.Model;
 using Mecanillama.API.Shared.Extensions;
 using Microsoft.EntityFrameworkCore;
 
@@ -9,6 +10,7 @@ public class AppDbContext : DbContext
     public AppDbContext(DbContextOptions options) : base(options){}
     
     public DbSet<Customer> Customers { get; set; }
+    public DbSet<Appointment> Appointments { get; set; }
 
     protected override void OnModelCreating(ModelBuilder builder)
     {
@@ -24,9 +26,9 @@ public class AppDbContext : DbContext
         builder.Entity<Customer>().Property(p => p.Address).IsRequired().HasMaxLength(40);
         
         //Relationships
-        //builder.Entity<Customer>().
-        //    HasMany(p => p.Appointments).WithOne(p => p.Customer)
-        //    .HasForeignKey(p => p.CustomerId);
+        builder.Entity<Customer>().
+            HasMany(p => p.Appointments).WithOne(p => p.Customer)
+            .HasForeignKey(p => p.CustomerId);
         
         //Mechanics
         //builder.Entity<Mechanic>().ToTable("Mechanics");

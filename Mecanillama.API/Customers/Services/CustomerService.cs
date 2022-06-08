@@ -2,6 +2,7 @@
 using Mecanillama.API.Customers.Domain.Repositories;
 using Mecanillama.API.Customers.Domain.Services;
 using Mecanillama.API.Customers.Domain.Services.Communication;
+using Mecanillama.API.Shared.Domain.Repositories;
 
 namespace Mecanillama.API.Customers.Services;
 

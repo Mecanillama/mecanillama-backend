@@ -1,6 +1,4 @@
-﻿using Mecanillama.API.Shared.Domain.Models;
-
-namespace Mecanillama.API.Customers.Domain.Model;
+﻿namespace Mecanillama.API.Customers.Domain.Model;
 
 public class Customer
 {
