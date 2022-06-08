@@ -28,8 +28,8 @@ public class CustomersController : ControllerBase {
     [HttpPost]
     public async Task<IActionResult> PostAsync([FromBody] SaveCustomerResource resource)
     {
-        //if (!ModelState.IsValid)
-            //return BadRequest(ModelState.GetErrorMessages());
+        if (!ModelState.IsValid)
+            return BadRequest(ModelState.GetErrorMessages());
 
         var customer = _mapper.Map<SaveCustomerResource, Customer>(resource);
 
