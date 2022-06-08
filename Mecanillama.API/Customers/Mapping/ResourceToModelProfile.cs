@@ -1,6 +1,13 @@
-﻿namespace Mecanillama.API.Customers.Mapping;
+﻿using AutoMapper;
+using Mecanillama.API.Customers.Domain.Model;
+using Mecanillama.API.Customers.Resources;
 
-public class ResourceToModelProfile
+namespace Mecanillama.API.Customers.Mapping;
+
+public class ResourceToModelProfile : Profile
 {
-    
+    public ResourceToModelProfile()
+    {
+        CreateMap<SaveCustomerResource, Customer>();
+    }
 }

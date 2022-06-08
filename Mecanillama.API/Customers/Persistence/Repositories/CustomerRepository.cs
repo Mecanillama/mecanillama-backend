@@ -1,6 +1,7 @@
 ﻿using Mecanillama.API.Customers.Domain.Model;
 using Mecanillama.API.Customers.Domain.Repositories;
-using Mecanillama.API.Customers.Persistence.Contexts;
+using Mecanillama.API.Shared.Domain.Repositories;
+using Mecanillama.API.Shared.Persistence.Contexts;
 using Microsoft.EntityFrameworkCore;
 
 namespace Mecanillama.API.Customers.Persistence.Repositories;
