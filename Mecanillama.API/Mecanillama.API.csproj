@@ -18,7 +18,6 @@
 
     <ItemGroup>
       <Folder Include="Appointments\Mapping" />
-      <Folder Include="Mechanics\Services" />
     </ItemGroup>
 
 </Project>
