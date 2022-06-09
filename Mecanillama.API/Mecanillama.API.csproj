@@ -18,7 +18,11 @@
 
     <ItemGroup>
       <Folder Include="Appointments\Mapping" />
-      <Folder Include="Mechanics" />
+      <Folder Include="Mechanics\Controllers" />
+      <Folder Include="Mechanics\Domain" />
+      <Folder Include="Mechanics\Persistence" />
+      <Folder Include="Mechanics\Resources" />
+      <Folder Include="Mechanics\Services" />
     </ItemGroup>
 
 </Project>

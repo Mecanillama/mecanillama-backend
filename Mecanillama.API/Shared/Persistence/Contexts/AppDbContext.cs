@@ -26,8 +26,8 @@ public class AppDbContext : DbContext
         builder.Entity<Customer>().Property(p => p.Address).IsRequired().HasMaxLength(40);
         
         //Relationships
-        builder.Entity<Customer>().
-            HasMany(p => p.Appointments).WithOne(p => p.Customer)
+        builder.Entity<Customer>().HasMany(p => p.Appointments)
+            .WithOne(p => p.Customer)
             .HasForeignKey(p => p.CustomerId);
         
         //Mechanics
@@ -37,7 +37,12 @@ public class AppDbContext : DbContext
         //Relationships
         
         //Appointments
-        
+        builder.Entity<Appointment>().ToTable("Appointments");
+        builder.Entity<Appointment>().HasKey(p => p.Id);
+        builder.Entity<Appointment>().Property(p => p.Id).IsRequired().ValueGeneratedOnAdd();
+        builder.Entity<Appointment>().Property(p => p.Date).IsRequired().HasMaxLength(40);
+        builder.Entity<Appointment>().Property(p => p.Time).IsRequired().HasMaxLength(40);
+
         //Relationships
         
         //Reviews

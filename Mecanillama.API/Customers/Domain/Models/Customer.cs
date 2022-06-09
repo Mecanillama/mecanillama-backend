@@ -1,4 +1,6 @@
-﻿namespace Mecanillama.API.Customers.Domain.Model;
+﻿using Mecanillama.API.Appointments.Domain.Models;
+
+namespace Mecanillama.API.Customers.Domain.Model;
 
 public class Customer
 {
@@ -11,5 +13,5 @@ public class Customer
     public string Address { get; set; }
 
     //Relationships
-    //public IList<Appointment> Appointments { get; set; } = new List<Appointment>();
+    public IList<Appointment> Appointments { get; set; } = new List<Appointment>();
 }
