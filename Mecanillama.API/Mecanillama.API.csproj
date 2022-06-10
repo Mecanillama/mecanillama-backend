@@ -14,15 +14,11 @@
         <PackageReference Include="Microsoft.EntityFrameworkCore.Relational.Design" Version="1.1.6" />
         <PackageReference Include="MySql.EntityFrameworkCore" Version="6.0.1" />
         <PackageReference Include="Swashbuckle.AspNetCore" Version="6.2.3" />
+        <PackageReference Include="Swashbuckle.AspNetCore.Annotations" Version="6.3.1" />
     </ItemGroup>
 
     <ItemGroup>
       <Folder Include="Appointments\Mapping" />
-      <Folder Include="Mechanics\Controllers" />
-      <Folder Include="Mechanics\Domain" />
-      <Folder Include="Mechanics\Persistence" />
-      <Folder Include="Mechanics\Resources" />
-      <Folder Include="Mechanics\Services" />
     </ItemGroup>
 
 </Project>
