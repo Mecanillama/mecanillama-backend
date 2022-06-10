@@ -21,7 +21,6 @@ public class AppDbContext : DbContext
         builder.Entity<Customer>().Property(p => p.Id).IsRequired().ValueGeneratedOnAdd();
         builder.Entity<Customer>().Property(p => p.Name).IsRequired().HasMaxLength(40);
         builder.Entity<Customer>().Property(p => p.Email).IsRequired().HasMaxLength(40);
-        builder.Entity<Customer>().Property(p => p.Password).IsRequired().HasMaxLength(40);
         builder.Entity<Customer>().Property(p => p.CarMake).IsRequired().HasMaxLength(40);
         builder.Entity<Customer>().Property(p => p.Address).IsRequired().HasMaxLength(40);
         

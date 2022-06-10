@@ -1,21 +1,11 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using Mecanillama.API.Shared.Resources;
 
 namespace Mecanillama.API.Mechanics.Resources;
 
-public class SaveMechanicResource
+public class SaveMechanicResource : SavePersonResource
 {
-    [Required]
-    [MaxLength(40)]
-    public string Name { get; set; }
-    [Required]
-    [MaxLength(40)]
-    public string Email { get; set; }
-    [Required]
-    [MaxLength(40)]
-    public string Password { get; set; }
-    [Required]
-    [MaxLength(40)]
-    public string Address { get; set; }
+
     [Required]
     [MaxLength(200)]
     public string Description { get; set; }
