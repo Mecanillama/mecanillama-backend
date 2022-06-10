@@ -28,13 +28,34 @@ public class AppointmentsController : ControllerBase
 
     [HttpGet]
     [ProducesResponseType(typeof(IEnumerable<AppointmentResource>), 200)]
-    [ProducesResponseType(typeof(BadRequestResult), 404)]
     public async Task<IEnumerable<AppointmentResource>> GetAllAsync()
     {
         var appointments = await _appointmentService.ListAsync();
         var resources = _mapper.Map<IEnumerable<Appointment>, IEnumerable<AppointmentResource>>(appointments);
         return resources;
     }
+    
+    [SwaggerOperation(
+        Summary = "Get Appointment by Id",
+        Description = "Get Appointment by Id",
+        OperationId = "GetAppointmentById")]
+    [SwaggerResponse(200, "Appointment returned", typeof(AppointmentResource))]
+
+    [HttpGet("{id}")]
+    [ProducesResponseType(typeof(AppointmentResource), 200)]
+    [ProducesResponseType(typeof(BadRequestResult), 404)]
+    public async Task<IActionResult> GetByIdAsync(long id)
+    {
+        var result = await _appointmentService.GetByIdAsync(id);
+
+        if (!result.Success)
+            return BadRequest(result.Message);
+
+        var appointmentResource = _mapper.Map<Appointment, AppointmentResource>(result.Resource);
+
+        return Ok(appointmentResource);
+    }
+
     
     
     
