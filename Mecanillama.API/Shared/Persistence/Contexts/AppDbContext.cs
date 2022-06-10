@@ -1,5 +1,6 @@
 ﻿using Mecanillama.API.Appointments.Domain.Models;
 using Mecanillama.API.Customers.Domain.Model;
+using Mecanillama.API.Mechanics.Domain.Models;
 using Mecanillama.API.Shared.Extensions;
 using Microsoft.EntityFrameworkCore;
 
@@ -11,6 +12,7 @@ public class AppDbContext : DbContext
     
     public DbSet<Customer> Customers { get; set; }
     public DbSet<Appointment> Appointments { get; set; }
+    public DbSet<Mechanic> Mechanics { get; set; }
 
     protected override void OnModelCreating(ModelBuilder builder)
     {
@@ -19,10 +21,10 @@ public class AppDbContext : DbContext
         builder.Entity<Customer>().ToTable("Customers");
         builder.Entity<Customer>().HasKey(p => p.Id);
         builder.Entity<Customer>().Property(p => p.Id).IsRequired().ValueGeneratedOnAdd();
-        builder.Entity<Customer>().Property(p => p.Name).IsRequired().HasMaxLength(40);
-        builder.Entity<Customer>().Property(p => p.Email).IsRequired().HasMaxLength(40);
+        builder.Entity<Customer>().Property(p => p.Name).IsRequired().HasMaxLength(80);
+        builder.Entity<Customer>().Property(p => p.Email).IsRequired().HasMaxLength(80);
         builder.Entity<Customer>().Property(p => p.CarMake).IsRequired().HasMaxLength(40);
-        builder.Entity<Customer>().Property(p => p.Address).IsRequired().HasMaxLength(40);
+        builder.Entity<Customer>().Property(p => p.Address).IsRequired().HasMaxLength(80);
         
         //Relationships
         builder.Entity<Customer>().HasMany(p => p.Appointments)
@@ -30,8 +32,16 @@ public class AppDbContext : DbContext
             .HasForeignKey(p => p.CustomerId);
         
         //Mechanics
-        //builder.Entity<Mechanic>().ToTable("Mechanics");
-        //builder.Entity<Mechanic>(HasKey)(p => p.Id);
+        builder.Entity<Mechanic>().ToTable("Mechanics");
+        builder.Entity<Mechanic>().HasKey(p => p.Id);
+        builder.Entity<Mechanic>().Property(p => p.Id).IsRequired().ValueGeneratedOnAdd();
+        builder.Entity<Mechanic>().Property(p => p.Name).IsRequired().HasMaxLength(80);
+        builder.Entity<Mechanic>().Property(p => p.Email).IsRequired().HasMaxLength(80);
+        
+        builder.Entity<Customer>().Property(p => p.Address).IsRequired().HasMaxLength(80);
+        
+        
+        
         
         //Relationships
         

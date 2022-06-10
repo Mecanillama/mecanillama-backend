@@ -1,4 +1,5 @@
 ﻿using Mecanillama.API.Customers.Domain.Model;
+using Mecanillama.API.Mechanics.Domain.Models;
 
 namespace Mecanillama.API.Appointments.Domain.Models;
 
@@ -12,10 +13,10 @@ public class Appointment
     
     //Relationships - many to many
     public long CustomerId { get; set; }
-    public long Mechanicd { get; set; }
-    //public long ApplianceId { get; set; }
+    public long MechanicId { get; set; }
+    
     public Customer Customer { get; set; }
-    //public Mechanic Mechanic { get; set; } 
+    public Mechanic Mechanic { get; set; } 
 
 
 }
