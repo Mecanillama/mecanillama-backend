@@ -2,7 +2,6 @@
 using Mecanillama.API.Appointments.Domain.Models;
 using Mecanillama.API.Appointments.Domain.Services;
 using Mecanillama.API.Appointments.Resources;
-using Mecanillama.API.Customers.Domain.Services;
 using Mecanillama.API.Shared.Extensions;
 using Microsoft.AspNetCore.Mvc;
 using Swashbuckle.AspNetCore.Annotations;
