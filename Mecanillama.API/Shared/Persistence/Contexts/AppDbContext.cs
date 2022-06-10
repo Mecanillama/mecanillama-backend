@@ -37,13 +37,13 @@ public class AppDbContext : DbContext
         builder.Entity<Mechanic>().Property(p => p.Id).IsRequired().ValueGeneratedOnAdd();
         builder.Entity<Mechanic>().Property(p => p.Name).IsRequired().HasMaxLength(80);
         builder.Entity<Mechanic>().Property(p => p.Email).IsRequired().HasMaxLength(80);
-        
-        builder.Entity<Customer>().Property(p => p.Address).IsRequired().HasMaxLength(80);
-        
-        
-        
+        builder.Entity<Mechanic>().Property(p => p.Description).IsRequired().HasMaxLength(200);
+        builder.Entity<Mechanic>().Property(p => p.Address).IsRequired().HasMaxLength(80);
         
         //Relationships
+        builder.Entity<Mechanic>().HasMany(p => p.Appointments)
+            .WithOne(p => p.Mechanic)
+            .HasForeignKey(p => p.MechanicId);
         
         //Appointments
         builder.Entity<Appointment>().ToTable("Appointments");
@@ -51,6 +51,9 @@ public class AppDbContext : DbContext
         builder.Entity<Appointment>().Property(p => p.Id).IsRequired().ValueGeneratedOnAdd();
         builder.Entity<Appointment>().Property(p => p.Date).IsRequired().HasMaxLength(40);
         builder.Entity<Appointment>().Property(p => p.Time).IsRequired().HasMaxLength(40);
+        builder.Entity<Appointment>().Property(p => p.Done).IsRequired().HasMaxLength(40);
+        builder.Entity<Appointment>().Property(p => p.CustomerId).IsRequired();
+        builder.Entity<Appointment>().Property(p => p.MechanicId).IsRequired();
 
         //Relationships
         
@@ -61,8 +64,7 @@ public class AppDbContext : DbContext
         //Snake Case Conventions
         
         builder.UseSnakeCaseNamingConvention();
-
-
+        
     }
 
 }

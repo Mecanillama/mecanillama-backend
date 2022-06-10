@@ -1,6 +1,10 @@
 ﻿using AutoMapper;
+using Mecanillama.API.Appointments.Domain.Models;
+using Mecanillama.API.Appointments.Resources;
 using Mecanillama.API.Customers.Domain.Model;
 using Mecanillama.API.Customers.Resources;
+using Mecanillama.API.Mechanics.Domain.Models;
+using Mecanillama.API.Mechanics.Resources;
 
 namespace Mecanillama.API.Customers.Mapping;
 
@@ -9,6 +13,8 @@ public class ModelToResourceProfile : Profile
     public ModelToResourceProfile()
     {
         CreateMap<Customer, CustomerResource>();
+        CreateMap<Mechanic, MechanicResource>();
+        CreateMap<Appointment, AppointmentResource>();
     }
 
 }
