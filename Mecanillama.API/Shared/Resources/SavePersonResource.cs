@@ -5,18 +5,17 @@ namespace Mecanillama.API.Shared.Resources;
 public class SavePersonResource
 {
     [Required]
-    [MaxLength(200)]
+    [MaxLength(80)]
     public string Name { get; set; }
     
     [Required]
-    [MaxLength(200)]
+    [MaxLength(80)]
     public string Email { get; set; }
     
     [Required]
-    [MaxLength(200)]
+    [MaxLength(80)]
     public string Address { get; set; }
     
-    //Useful in the future when implementing JWT
-    //[Required]
-    //public long UserId { get; set; }
+    [Required]
+    public long UserId { get; set; }
 }
