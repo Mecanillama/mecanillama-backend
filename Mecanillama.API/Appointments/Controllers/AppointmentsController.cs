@@ -2,7 +2,7 @@
 using Mecanillama.API.Appointments.Domain.Models;
 using Mecanillama.API.Appointments.Domain.Services;
 using Mecanillama.API.Appointments.Resources;
-using Mecanillama.API.Customers.Domain.Services;
+using Mecanillama.API.Shared.Extensions;
 using Microsoft.AspNetCore.Mvc;
 using Swashbuckle.AspNetCore.Annotations;
 
@@ -28,7 +28,6 @@ public class AppointmentsController : ControllerBase
 
     [HttpGet]
     [ProducesResponseType(typeof(IEnumerable<AppointmentResource>), 200)]
-    [ProducesResponseType(typeof(BadRequestResult), 404)]
     public async Task<IEnumerable<AppointmentResource>> GetAllAsync()
     {
         var appointments = await _appointmentService.ListAsync();
@@ -36,6 +35,95 @@ public class AppointmentsController : ControllerBase
         return resources;
     }
     
+    [SwaggerOperation(
+        Summary = "Get Appointment by Id",
+        Description = "Get Appointment by Id",
+        OperationId = "GetAppointmentById")]
+    [SwaggerResponse(200, "Appointment returned", typeof(AppointmentResource))]
+
+    [HttpGet("{id}")]
+    [ProducesResponseType(typeof(AppointmentResource), 200)]
+    [ProducesResponseType(typeof(BadRequestResult), 404)]
+    public async Task<IActionResult> GetByIdAsync(long id)
+    {
+        var result = await _appointmentService.GetByIdAsync(id);
+
+        if (!result.Success)
+            return BadRequest(result.Message);
+
+        var appointmentResource = _mapper.Map<Appointment, AppointmentResource>(result.Resource);
+
+        return Ok(appointmentResource);
+    }
+    
+    [SwaggerOperation(
+        Summary = "Save Appointment",
+        Description = "Save Appointment",
+        OperationId = "SaveAppointment")]
+    [SwaggerResponse(201, "Appointment saved", typeof(AppointmentResource))]
+
+    [HttpPost]
+    [ProducesResponseType(typeof(AppointmentResource), 201)]
+    [ProducesResponseType(typeof(BadRequestResult), 404)]
+    public async Task<IActionResult> PostAsync([FromBody] SaveAppointmentResource resource)
+    {
+        if (!ModelState.IsValid)
+            return BadRequest(ModelState.GetErrorMessages());
+
+        var appointment = _mapper.Map<SaveAppointmentResource, Appointment>(resource);
+        var result = await _appointmentService.SaveAsync(appointment);
+
+        if (!result.Success)
+            return BadRequest(result.Message);
+
+        var appointmentResource = _mapper.Map<Appointment, AppointmentResource>(result.Resource);
+
+        return Ok(appointmentResource);
+    }
     
     
+    [SwaggerOperation(
+        Summary = "Update Appointment",
+        Description = "Update Appointment",
+        OperationId = "UpdateAppointment")]
+    [SwaggerResponse(200, "Appointment updated", typeof(AppointmentResource))]
+
+    [HttpPut("{id}")]
+    [ProducesResponseType(typeof(AppointmentResource), 200)]
+    [ProducesResponseType(typeof(BadRequestResult), 404)]
+    public async Task<IActionResult> PutAsync(long id, [FromBody] SaveAppointmentResource resource)
+    {
+        if (!ModelState.IsValid)
+            return BadRequest(ModelState.GetErrorMessages());
+
+        var appointment = _mapper.Map<SaveAppointmentResource, Appointment>(resource);
+        var result = await _appointmentService.UpdateAsync(id, appointment);
+
+        if (!result.Success)
+            return BadRequest(result.Message);
+
+        var appointmentResource = _mapper.Map<Appointment, AppointmentResource>(result.Resource);
+        return Ok(appointmentResource);
+    }
+    
+    [SwaggerOperation(
+        Summary = "Delete Appointment",
+        Description = "Delete Appointment",
+        OperationId = "DeleteAppointment")]
+    [SwaggerResponse(200, "Appointment deleted", typeof(AppointmentResource))]
+
+    [HttpDelete("{id}")]
+    [ProducesResponseType(typeof(AppointmentResource), 200)]
+    [ProducesResponseType(typeof(BadRequestResult), 404)]
+    public async Task<IActionResult> DeleteAsync(long id)
+    {
+        var result = await _appointmentService.DeleteAsync(id);
+
+        if (!result.Success)
+            return BadRequest(result.Message);
+
+        var appointmentResource = _mapper.Map<Appointment, AppointmentResource>(result.Resource);
+
+        return Ok(appointmentResource);
+    }
 }

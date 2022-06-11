@@ -16,6 +16,4 @@ public class SaveAppointmentResource
     [Required]
     public long MechanicId { get; set; }
     
-    [Required]
-    public bool Done { get; set; }
 }

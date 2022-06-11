@@ -9,14 +9,11 @@ public class Appointment
     public long Id { get; set; }
     public string Date { get; set; }
     public string Time { get; set; }
-    public bool Done { get; set; }
-    
     //Relationships - many to many
     public long CustomerId { get; set; }
     public long MechanicId { get; set; }
     
     public Customer Customer { get; set; }
     public Mechanic Mechanic { get; set; } 
-
-
+    
 }
