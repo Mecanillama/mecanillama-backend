@@ -1,6 +1,7 @@
 ﻿using Mecanillama.API.Appointments.Domain.Models;
 using Mecanillama.API.Customers.Domain.Model;
 using Mecanillama.API.Mechanics.Domain.Models;
+using Mecanillama.API.Reviews.Domain.Models;
 using Mecanillama.API.Shared.Extensions;
 using Microsoft.EntityFrameworkCore;
 
@@ -13,6 +14,7 @@ public class AppDbContext : DbContext
     public DbSet<Customer> Customers { get; set; }
     public DbSet<Appointment> Appointments { get; set; }
     public DbSet<Mechanic> Mechanics { get; set; }
+    public DbSet<Review> Reviews { get; set; }
 
     protected override void OnModelCreating(ModelBuilder builder)
     {
@@ -58,6 +60,11 @@ public class AppDbContext : DbContext
         //Relationships
         
         //Reviews
+        builder.Entity<Review>().ToTable("Reviews");
+        builder.Entity<Review>().HasKey(p => p.Id);
+        builder.Entity<Review>().Property(p => p.Id).IsRequired().ValueGeneratedOnAdd();
+        builder.Entity<Review>().Property(p => p.Comment).IsRequired().HasMaxLength(40);
+        builder.Entity<Review>().Property(p => p.Score).IsRequired();
         
         //Relationships
         
