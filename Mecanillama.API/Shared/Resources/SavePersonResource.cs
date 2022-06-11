@@ -16,7 +16,7 @@ public class SavePersonResource
     [MaxLength(200)]
     public string Address { get; set; }
     
-    //Useful in the future when implementing JWT
+    //Useful to implement JWT in the future
     //[Required]
     //public long UserId { get; set; }
 }
