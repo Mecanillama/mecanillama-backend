@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using Mecanillama.API.Reviews.Domain.Services;
 using Mecanillama.API.Reviews.Resources;
 using Mecanillama.API.Shared.Extensions;
+using Swashbuckle.AspNetCore.Annotations;
 
 namespace Mecanillama.API.Reviews.Controllers;
 
@@ -17,6 +18,12 @@ public class ReviewsController : ControllerBase {
         _mapper = mapper;
     }
     
+    [SwaggerOperation(
+        Summary = "Get all Reviews",
+        Description = "Get of all Reviews",
+        OperationId = "GetAllReviews")]
+    [SwaggerResponse(200, "All Reviews returned", typeof(IEnumerable<ReviewResource>))]
+    
     [HttpGet]
     public async Task<IEnumerable<ReviewResource>> GetAllSync() {
         var reviews = await _reviewService.ListAsync();
@@ -25,7 +32,15 @@ public class ReviewsController : ControllerBase {
         return resources;
     }
     
+    [SwaggerOperation(
+        Summary = "Save Review",
+        Description = "Save Review",
+        OperationId = "SaveReview")]
+    [SwaggerResponse(201, "Review saved", typeof(ReviewResource))]
+    
     [HttpPost]
+    [ProducesResponseType(typeof(ReviewResource), 201)]
+    [ProducesResponseType(typeof(BadRequestResult), 404)]
     public async Task<IActionResult> PostAsync([FromBody] SaveReviewResource resource)
     {
         if (!ModelState.IsValid)
@@ -42,7 +57,16 @@ public class ReviewsController : ControllerBase {
 
         return Ok(categoryResource);
     }
+    
+    [SwaggerOperation(
+        Summary = "Update Review",
+        Description = "Update Review",
+        OperationId = "UpdateReview")]
+    [SwaggerResponse(200, "Review updated", typeof(ReviewResource))]
+
     [HttpPut("{id}")]
+    [ProducesResponseType(typeof(ReviewResource), 200)]
+    [ProducesResponseType(typeof(BadRequestResult), 404)]
     public async Task<IActionResult> PutAsync(int id, [FromBody] SaveReviewResource resource)
     {
         if (!ModelState.IsValid)
@@ -60,7 +84,15 @@ public class ReviewsController : ControllerBase {
         return Ok(reviewResource);
     }
     
+    [SwaggerOperation(
+        Summary = "Delete Review",
+        Description = "Delete Review",
+        OperationId = "DeleteReview")]
+    [SwaggerResponse(200, "Review deleted", typeof(ReviewResource))]
+
     [HttpDelete("{id}")]
+    [ProducesResponseType(typeof(ReviewResource), 200)]
+    [ProducesResponseType(typeof(BadRequestResult), 404)]
     public async Task<IActionResult> DeleteAsync(int id)
     {
         var result = await _reviewService.DeleteAsync(id);
