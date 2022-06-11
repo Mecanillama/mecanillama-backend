@@ -21,17 +21,6 @@ public class AppointmentService : IAppointmentService
     {
         return await _appointmentRepository.ListAsync();
     }
-
-    public async Task<AppointmentResponse> GetByIdAsync(long id)
-    {
-        var existingAppointment = await _appointmentRepository.FindByIdAsync(id);
-        if (existingAppointment == null)
-        {
-            return new AppointmentResponse("Appointment not found");
-        }
-        return new AppointmentResponse(existingAppointment);
-    }
-
     public async Task<AppointmentResponse> SaveAsync(Appointment appointment)
     {
         try
