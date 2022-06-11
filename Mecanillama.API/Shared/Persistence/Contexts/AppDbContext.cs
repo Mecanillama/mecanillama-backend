@@ -21,10 +21,10 @@ public class AppDbContext : DbContext
         builder.Entity<Customer>().ToTable("Customers");
         builder.Entity<Customer>().HasKey(p => p.Id);
         builder.Entity<Customer>().Property(p => p.Id).IsRequired().ValueGeneratedOnAdd();
-        builder.Entity<Customer>().Property(p => p.Name).IsRequired().HasMaxLength(80);
-        builder.Entity<Customer>().Property(p => p.Email).IsRequired().HasMaxLength(80);
-        builder.Entity<Customer>().Property(p => p.CarMake).IsRequired().HasMaxLength(40);
-        builder.Entity<Customer>().Property(p => p.Address).IsRequired().HasMaxLength(80);
+        builder.Entity<Customer>().Property(p => p.Name).IsRequired().HasMaxLength(200);
+        builder.Entity<Customer>().Property(p => p.Email).IsRequired().HasMaxLength(200);
+        builder.Entity<Customer>().Property(p => p.CarMake).IsRequired().HasMaxLength(200);
+        builder.Entity<Customer>().Property(p => p.Address).IsRequired().HasMaxLength(200);
         
         //Relationships
         builder.Entity<Customer>().HasMany(p => p.Appointments)
@@ -35,10 +35,11 @@ public class AppDbContext : DbContext
         builder.Entity<Mechanic>().ToTable("Mechanics");
         builder.Entity<Mechanic>().HasKey(p => p.Id);
         builder.Entity<Mechanic>().Property(p => p.Id).IsRequired().ValueGeneratedOnAdd();
-        builder.Entity<Mechanic>().Property(p => p.Name).IsRequired().HasMaxLength(80);
-        builder.Entity<Mechanic>().Property(p => p.Email).IsRequired().HasMaxLength(80);
-        builder.Entity<Mechanic>().Property(p => p.Description).IsRequired().HasMaxLength(200);
-        builder.Entity<Mechanic>().Property(p => p.Address).IsRequired().HasMaxLength(80);
+        builder.Entity<Mechanic>().Property(p => p.Name).IsRequired().HasMaxLength(200);
+        builder.Entity<Mechanic>().Property(p => p.Email).IsRequired().HasMaxLength(200);
+        builder.Entity<Mechanic>().Property(p => p.Description).IsRequired().HasMaxLength(300);
+        builder.Entity<Mechanic>().Property(p => p.Address).IsRequired().HasMaxLength(200);
+        builder.Entity<Mechanic>().Property(p => p.BusinessOwner).IsRequired().HasMaxLength(200);
         
         //Relationships
         builder.Entity<Mechanic>().HasMany(p => p.Appointments)
@@ -49,8 +50,8 @@ public class AppDbContext : DbContext
         builder.Entity<Appointment>().ToTable("Appointments");
         builder.Entity<Appointment>().HasKey(p => p.Id);
         builder.Entity<Appointment>().Property(p => p.Id).IsRequired().ValueGeneratedOnAdd();
-        builder.Entity<Appointment>().Property(p => p.Date).IsRequired().HasMaxLength(40);
-        builder.Entity<Appointment>().Property(p => p.Time).IsRequired().HasMaxLength(40);
+        builder.Entity<Appointment>().Property(p => p.Date).IsRequired().HasMaxLength(200);
+        builder.Entity<Appointment>().Property(p => p.Time).IsRequired().HasMaxLength(200);
         builder.Entity<Appointment>().Property(p => p.CustomerId).IsRequired();
         builder.Entity<Appointment>().Property(p => p.MechanicId).IsRequired();
 
