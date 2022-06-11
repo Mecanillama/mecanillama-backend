@@ -5,11 +5,14 @@ namespace Mecanillama.API.Mechanics.Resources;
 
 public class SaveMechanicResource : SavePersonResource
 {
-
     [Required]
     [MaxLength(200)]
-    public string Description { get; set; }
+    public string BusinessOwners { get; set; }
     [Required]
     [MaxLength(10)]
     public long PhoneNumber { get; set; }
+    [Required]
+    [MaxLength(300)]
+    public string Description { get; set; }
+
 }

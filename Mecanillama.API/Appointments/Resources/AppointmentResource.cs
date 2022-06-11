@@ -7,5 +7,4 @@ public class AppointmentResource
     public string Time { get; set; }
     public long CustomerId { get; set; }
     public long MechanicId { get; set; }
-    public bool Done { get; set; }
 }
