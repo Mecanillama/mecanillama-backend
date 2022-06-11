@@ -10,7 +10,8 @@ public class Person
     public string Email { get; set; }
     public string Address { get; set; }
     
-    public long UserId { get; set; }
+    //Useful in the future when implementing JWT
+    //public long UserId { get; set; }
 
     //Relationships
     //One to many
