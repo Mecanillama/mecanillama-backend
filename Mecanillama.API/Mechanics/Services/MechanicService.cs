@@ -19,21 +19,63 @@ public class MechanicService : IMechanicService
 
     public async Task<IEnumerable<Mechanic>> ListAsync()
     {
-        throw new NotImplementedException();
+        return await _mechanicRepository.ListAsync();
     }
 
     public async Task<MechanicResponse> SaveAsync(Mechanic mechanic)
     {
-        throw new NotImplementedException();
+        try
+        {
+            await _mechanicRepository.AddAsync(mechanic);
+            await _unitOfWork.CompleteAsync();
+            return new MechanicResponse(mechanic);
+        }
+        catch (Exception e) 
+        {
+            return new MechanicResponse($"An error occurred while saving the mechanic: {e.Message}");
+        }
     }
 
     public async Task<MechanicResponse> UpdateAsync(int id, Mechanic mechanic)
     {
-        throw new NotImplementedException();
+        var existingMechanic = await _mechanicRepository.FindByIdAsync(id);
+        if (existingMechanic == null)
+        {
+            return new MechanicResponse("Mechanic not found ");
+        }
+
+        existingMechanic.Name = mechanic.Name;
+
+        try
+        {
+            _mechanicRepository.Update(existingMechanic);
+            await _unitOfWork.CompleteAsync();
+
+            return new MechanicResponse(existingMechanic);
+        }
+        catch (Exception e)
+        {
+            return new MechanicResponse($"An error occurred while updating the mechanic: {e.Message}");
+        }
     }
 
     public async Task<MechanicResponse> DeleteAsync(int id)
     {
-        throw new NotImplementedException();
+        var existingMechanic = await _mechanicRepository.FindByIdAsync(id);
+
+        if (existingMechanic == null)
+            return new MechanicResponse("Customer not found.");
+
+        try
+        {
+            _mechanicRepository.Remove(existingMechanic);
+            await _unitOfWork.CompleteAsync();
+
+            return new MechanicResponse(existingMechanic);
+        }
+        catch (Exception e)
+        {
+            return new MechanicResponse($"An error occurred while deleting the mechanic: {e.Message}");
+        }
     }
 }
