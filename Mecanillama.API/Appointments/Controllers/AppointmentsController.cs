@@ -60,10 +60,10 @@ public class AppointmentsController : ControllerBase
         Summary = "Save Appointment",
         Description = "Save Appointment",
         OperationId = "SaveAppointment")]
-    [SwaggerResponse(200, "Appointment saved", typeof(AppointmentResource))]
+    [SwaggerResponse(201, "Appointment saved", typeof(AppointmentResource))]
 
     [HttpPost]
-    [ProducesResponseType(typeof(AppointmentResource), 200)]
+    [ProducesResponseType(typeof(AppointmentResource), 201)]
     [ProducesResponseType(typeof(BadRequestResult), 404)]
     public async Task<IActionResult> PostAsync([FromBody] SaveAppointmentResource resource)
     {

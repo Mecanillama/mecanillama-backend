@@ -57,7 +57,6 @@ public class AppointmentService : IAppointmentService
         
         existingAppointment.Date = appointment.Date;
         existingAppointment.Time = appointment.Time;
-        existingAppointment.Done = appointment.Done;
 
         try
         {

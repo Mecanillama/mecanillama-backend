@@ -51,7 +51,6 @@ public class AppDbContext : DbContext
         builder.Entity<Appointment>().Property(p => p.Id).IsRequired().ValueGeneratedOnAdd();
         builder.Entity<Appointment>().Property(p => p.Date).IsRequired().HasMaxLength(40);
         builder.Entity<Appointment>().Property(p => p.Time).IsRequired().HasMaxLength(40);
-        builder.Entity<Appointment>().Property(p => p.Done).IsRequired().HasMaxLength(40);
         builder.Entity<Appointment>().Property(p => p.CustomerId).IsRequired();
         builder.Entity<Appointment>().Property(p => p.MechanicId).IsRequired();
 
