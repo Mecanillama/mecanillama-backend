@@ -3,6 +3,7 @@ using Mecanillama.API.Mechanics.Domain.Models;
 using Mecanillama.API.Mechanics.Domain.Repositories;
 using Mecanillama.API.Shared.Domain.Repositories;
 using Mecanillama.API.Shared.Persistence.Contexts;
+using Microsoft.EntityFrameworkCore;
 
 namespace Mecanillama.API.Mechanics.Persistence.Repositories;
 
@@ -14,26 +15,26 @@ public class MechanicRepository : BaseRepository, IMechanicRepository
 
     public async Task<IEnumerable<Mechanic>> ListAsync()
     {
-        throw new NotImplementedException();
+        return await _context.Mechanics.ToListAsync();
     }
 
     public async Task AddAsync(Mechanic mechanic)
     {
-        throw new NotImplementedException();
+        await _context.Mechanics.AddAsync(mechanic);
     }
 
     public async Task<Mechanic> FindByIdAsync(int id)
     {
-        throw new NotImplementedException();
+        return await _context.Mechanics.FindAsync(id);
     }
 
     public void Update(Mechanic mechanic)
     {
-        throw new NotImplementedException();
+        _context.Mechanics.Update(mechanic);
     }
 
     public void Remove(Mechanic mechanic)
     {
-        throw new NotImplementedException();
+        _context.Mechanics.Remove(mechanic);
     }
 }
