@@ -7,9 +7,9 @@ public class Mechanic : Person
 {
     //Properties
     public long Id { get; set; }
-    public long Phone { get; set; }
     public string BusinessOwner { get; set; }
     public string Description { get; set; }
+    public long Phone { get; set; }
 
     //Relationships
     public IList<Appointment> Appointments { get; set; } = new List<Appointment>();

@@ -1,6 +1,4 @@
 ﻿using AutoMapper;
-using Mecanillama.API.Customers.Domain.Model;
-using Mecanillama.API.Customers.Resources;
 using Mecanillama.API.Mechanics.Domain.Models;
 using Mecanillama.API.Mechanics.Domain.Services;
 using Mecanillama.API.Mechanics.Resources;
