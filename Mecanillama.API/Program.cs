@@ -1,3 +1,7 @@
+using Mecanillama.API.Appointments.Domain.Repositories;
+using Mecanillama.API.Appointments.Domain.Services;
+using Mecanillama.API.Appointments.Persistence.Repositories;
+using Mecanillama.API.Appointments.Services;
 using Mecanillama.API.Customers.Domain.Repositories;
 using Mecanillama.API.Customers.Domain.Services;
 using Mecanillama.API.Customers.Mapping;
@@ -64,6 +68,8 @@ builder.Services.AddScoped<ICustomerRepository, CustomerRepository>();
 builder.Services.AddScoped<ICustomerService, CustomerService>();
 builder.Services.AddScoped<IMechanicRepository, MechanicRepository>();
 builder.Services.AddScoped<IMechanicService, MechanicService>();
+builder.Services.AddScoped<IAppointmentRepository, AppointmentRepository>();
+builder.Services.AddScoped<IAppointmentService, AppointmentService>();
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 
 // AutoMapper Configuration

@@ -40,6 +40,7 @@ public class AppDbContext : DbContext
         builder.Entity<Mechanic>().Property(p => p.Name).IsRequired().HasMaxLength(200);
         builder.Entity<Mechanic>().Property(p => p.Email).IsRequired().HasMaxLength(200);
         builder.Entity<Mechanic>().Property(p => p.Description).IsRequired().HasMaxLength(300);
+        builder.Entity<Mechanic>().Property(p => p.Phone).IsRequired();
         builder.Entity<Mechanic>().Property(p => p.Address).IsRequired().HasMaxLength(200);
         builder.Entity<Mechanic>().Property(p => p.BusinessOwner).IsRequired().HasMaxLength(200);
         
