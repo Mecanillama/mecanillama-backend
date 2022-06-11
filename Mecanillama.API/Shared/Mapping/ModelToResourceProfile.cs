@@ -5,6 +5,8 @@ using Mecanillama.API.Customers.Domain.Model;
 using Mecanillama.API.Customers.Resources;
 using Mecanillama.API.Mechanics.Domain.Models;
 using Mecanillama.API.Mechanics.Resources;
+using Mecanillama.API.Reviews.Domain.Models;
+using Mecanillama.API.Reviews.Resources;
 
 namespace Mecanillama.API.Customers.Mapping;
 
@@ -15,6 +17,7 @@ public class ModelToResourceProfile : Profile
         CreateMap<Customer, CustomerResource>();
         CreateMap<Mechanic, MechanicResource>();
         CreateMap<Appointment, AppointmentResource>();
+        CreateMap<Review, ReviewResource>();
     }
 
 }

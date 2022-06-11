@@ -11,6 +11,10 @@ using Mecanillama.API.Mechanics.Domain.Repositories;
 using Mecanillama.API.Mechanics.Domain.Services;
 using Mecanillama.API.Mechanics.Persistence.Repositories;
 using Mecanillama.API.Mechanics.Services;
+using Mecanillama.API.Reviews.Domain.Repositories;
+using Mecanillama.API.Reviews.Domain.Services;
+using Mecanillama.API.Reviews.Persistence.Repositories;
+using Mecanillama.API.Reviews.Services;
 using Mecanillama.API.Shared.Domain.Repositories;
 using Mecanillama.API.Shared.Persistence.Contexts;
 using Mecanillama.API.Shared.Persistence.Repositories;
@@ -70,6 +74,8 @@ builder.Services.AddScoped<IMechanicRepository, MechanicRepository>();
 builder.Services.AddScoped<IMechanicService, MechanicService>();
 builder.Services.AddScoped<IAppointmentRepository, AppointmentRepository>();
 builder.Services.AddScoped<IAppointmentService, AppointmentService>();
+builder.Services.AddScoped<IReviewRepository, ReviewRepository>();
+builder.Services.AddScoped<IReviewService, ReviewService>();
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 
 // AutoMapper Configuration

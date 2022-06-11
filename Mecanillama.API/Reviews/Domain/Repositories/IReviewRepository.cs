@@ -2,7 +2,8 @@
 
 namespace Mecanillama.API.Reviews.Domain.Repositories;
 
-public interface IReviewRepository {
+public interface IReviewRepository
+{
     Task<IEnumerable<Review>> ListAsync();
     Task AddAsync(Review review);
     Task<Review> FindByIdAsync(int id);

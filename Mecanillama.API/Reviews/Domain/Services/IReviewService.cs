@@ -6,7 +6,7 @@ namespace Mecanillama.API.Reviews.Domain.Services;
 public interface IReviewService
 {
     Task<IEnumerable<Review>> ListAsync();
-    Task<ReviewResponse> SaveAsync(Review category);
+    Task<ReviewResponse> SaveAsync(Review review);
     Task<ReviewResponse> UpdateAsync(int id, Review review);
     Task<ReviewResponse> DeleteAsync(int id);
 }

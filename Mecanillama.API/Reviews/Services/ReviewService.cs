@@ -2,10 +2,12 @@
 using Mecanillama.API.Reviews.Domain.Repositories;
 using Mecanillama.API.Reviews.Domain.Services;
 using Mecanillama.API.Reviews.Domain.Services.Communication;
+using Mecanillama.API.Shared.Domain.Repositories;
 
 namespace Mecanillama.API.Reviews.Services;
 
-public class ReviewService : IReviewService {
+public class ReviewService : IReviewService
+{
     private readonly IReviewRepository _reviewRepository;
     private readonly IUnitOfWork _unitOfWork;
 
@@ -19,14 +21,15 @@ public class ReviewService : IReviewService {
         return await _reviewRepository.ListAsync();
     }
 
-    public async Task<ReviewResponse> SaveAsync(Review review) {
+    public async Task<ReviewResponse> SaveAsync(Review review)
+    {
         try
         {
             await _reviewRepository.AddAsync(review);
             await _unitOfWork.CompleteAsync();
             return new ReviewResponse(review);
         }
-        catch (Exception e)
+        catch (Exception e) 
         {
             return new ReviewResponse($"An error occurred while saving the review: {e.Message}");
         }
@@ -55,11 +58,12 @@ public class ReviewService : IReviewService {
         }
     }
 
-    public async Task<ReviewResponse> DeleteAsync(int id) {
+    public async Task<ReviewResponse> DeleteAsync(int id)
+    {
         var existingReview = await _reviewRepository.FindByIdAsync(id);
 
         if (existingReview == null)
-            return new ReviewResponse("Review not found.");
+            return new ReviewResponse("Customer not found.");
 
         try
         {
