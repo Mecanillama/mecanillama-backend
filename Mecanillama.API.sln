@@ -2,6 +2,8 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mecanillama.API", "Mecanillama.API\Mecanillama.API.csproj", "{3B8C7BCB-F9E9-411C-BCCB-1A6078569D4D}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mecanillama.API.Tests", "Mecanillama.API.Tests\Mecanillama.API.Tests.csproj", "{24AAF9B5-C2B1-4642-AD7C-C4C48D44F2B9}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -12,5 +14,9 @@ Global
 		{3B8C7BCB-F9E9-411C-BCCB-1A6078569D4D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3B8C7BCB-F9E9-411C-BCCB-1A6078569D4D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3B8C7BCB-F9E9-411C-BCCB-1A6078569D4D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{24AAF9B5-C2B1-4642-AD7C-C4C48D44F2B9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{24AAF9B5-C2B1-4642-AD7C-C4C48D44F2B9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{24AAF9B5-C2B1-4642-AD7C-C4C48D44F2B9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{24AAF9B5-C2B1-4642-AD7C-C4C48D44F2B9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
