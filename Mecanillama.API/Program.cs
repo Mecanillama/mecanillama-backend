@@ -86,6 +86,7 @@ builder.Services.AddAutoMapper(
 
 var app = builder.Build();
 
+
 // Validation for ensuring Database Objects are created
 
 using (var scope = app.Services.CreateScope())
@@ -95,6 +96,7 @@ using (var context = scope.ServiceProvider.GetService<AppDbContext>())
 }
 
 // Configure the HTTP request pipeline.
+
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
