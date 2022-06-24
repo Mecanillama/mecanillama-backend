@@ -35,6 +35,48 @@ public class MechanicsController : ControllerBase
     }
     
     [SwaggerOperation(
+        Summary = "Get Mechanic by Id",
+        Description = "Get Mechanic by Id",
+        OperationId = "GetMechanicById")]
+    [SwaggerResponse(200, "Mechanic returned", typeof(MechanicResource))]
+
+    [HttpGet("{id}")]
+    [ProducesResponseType(typeof(MechanicResource), 200)]
+    [ProducesResponseType(typeof(BadRequestResult), 404)]
+    public async Task<IActionResult> GetByIdAsync(long id)
+    {
+        var result = await _mechanicService.GetByIdAsync(id);
+
+        if (!result.Success)
+            return BadRequest(result.Message);
+
+        var mechanicResult = _mapper.Map<Mechanic, MechanicResource>(result.Resource);
+
+        return Ok(mechanicResult);
+    }
+
+    [SwaggerOperation(
+        Summary = "Get Mechanic by User Id",
+        Description = "Get Mechanic by User Id",
+        OperationId = "GetMechanicByUserId")]
+    [SwaggerResponse(200, "Mechanic returned", typeof(MechanicResource))]
+
+    [HttpGet("users/{userId}")]
+    [ProducesResponseType(typeof(MechanicResource), 200)]
+    [ProducesResponseType(typeof(BadRequestResult), 404)]
+    public async Task<IActionResult> GetByUserIdAsync(long userId)
+    {
+        var result = await _mechanicService.GetByUserIdAsync(userId);
+
+        if (!result.Success)
+            return BadRequest(result.Message);
+
+        var mechanicResult = _mapper.Map<Mechanic, MechanicResource>(result.Resource);
+
+        return Ok(mechanicResult);
+    }
+    
+    [SwaggerOperation(
         Summary = "Save Mechanic",
         Description = "Save Mechanic",
         OperationId = "SaveMechanic")]
