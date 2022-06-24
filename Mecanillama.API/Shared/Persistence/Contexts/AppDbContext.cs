@@ -23,9 +23,10 @@ public class AppDbContext : DbContext
         base.OnModelCreating(builder);
         //Users
         builder.Entity<User>().ToTable("Users");
-        
-        
-        
+        builder.Entity<User>().HasKey(p => p.Id);
+        builder.Entity<User>().Property(p => p.Id).IsRequired().ValueGeneratedOnAdd();
+        builder.Entity<User>().Property(p => p.Email).IsRequired().HasMaxLength(100);
+
         //Customers
         builder.Entity<Customer>().ToTable("Customers");
         builder.Entity<Customer>().HasKey(p => p.Id);
