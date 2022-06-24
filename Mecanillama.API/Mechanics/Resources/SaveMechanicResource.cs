@@ -1,5 +1,4 @@
 ﻿using System.ComponentModel.DataAnnotations;
-using Mecanillama.API.Shared.Resources;
 
 namespace Mecanillama.API.Mechanics.Resources;
 

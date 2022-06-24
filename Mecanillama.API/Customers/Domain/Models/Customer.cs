@@ -1,5 +1,4 @@
 ﻿using Mecanillama.API.Appointments.Domain.Models;
-using Mecanillama.API.Shared.Domain.Models;
 
 namespace Mecanillama.API.Customers.Domain.Model;
 

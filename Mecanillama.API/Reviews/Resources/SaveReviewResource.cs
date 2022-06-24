@@ -1,6 +1,4 @@
 ﻿using System.ComponentModel.DataAnnotations;
-using Mecanillama.API.Shared.Resources;
-
 namespace Mecanillama.API.Reviews.Resources;
 
 public class SaveReviewResource

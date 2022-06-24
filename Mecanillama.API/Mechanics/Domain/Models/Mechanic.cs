@@ -1,6 +1,5 @@
 ﻿using Mecanillama.API.Appointments.Domain.Models;
 using Mecanillama.API.Reviews.Domain.Models;
-using Mecanillama.API.Shared.Domain.Models;
 
 namespace Mecanillama.API.Mechanics.Domain.Models;
 

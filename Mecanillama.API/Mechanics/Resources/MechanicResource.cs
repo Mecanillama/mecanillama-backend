@@ -1,5 +1,4 @@
-﻿using Mecanillama.API.Shared.Resources;
-
+﻿
 namespace Mecanillama.API.Mechanics.Resources;
 
 public class MechanicResource
