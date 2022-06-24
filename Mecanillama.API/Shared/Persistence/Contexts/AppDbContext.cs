@@ -12,6 +12,7 @@ public class AppDbContext : DbContext
 {
     public AppDbContext(DbContextOptions options) : base(options){}
     
+    public DbSet<User> Users { get; set; }
     public DbSet<Customer> Customers { get; set; }
     public DbSet<Appointment> Appointments { get; set; }
     public DbSet<Mechanic> Mechanics { get; set; }
