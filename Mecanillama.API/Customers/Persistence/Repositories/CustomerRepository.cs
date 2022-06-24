@@ -21,9 +21,16 @@ public class CustomerRepository :BaseRepository, ICustomerRepository
         await _context.Customers.AddAsync(customer);
     }
 
-    public async Task<Customer> FindByIdAsync(int id)
+    public async Task<Customer> FindByIdAsync(long id)
     {
         return await _context.Customers.FindAsync(id);
+    }
+    
+    public async Task<Customer> FindByUserIdAsync(long userId)
+    {
+        return await _context.Customers
+            .Where(p => p.UserId == userId)
+            .FirstOrDefaultAsync();
     }
 
     public void Update(Customer customer)

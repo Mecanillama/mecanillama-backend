@@ -19,6 +19,25 @@ public class CustomerService : ICustomerService {
     {
         return await _customerRepository.ListAsync();
     }
+    public async Task<CustomerResponse> GetByIdAsync(long id)
+    {
+        var existingCustomer = await _customerRepository.FindByIdAsync(id);
+
+        if (existingCustomer == null)
+            return new CustomerResponse("Customer not found.");
+
+        return new CustomerResponse(existingCustomer);
+    }
+
+    public async Task<CustomerResponse> GetByUserIdAsync(long userId)
+    {
+        var existingCustomer = await _customerRepository.FindByUserIdAsync(userId);
+
+        if (existingCustomer == null)
+            return new CustomerResponse("Customer not found.");
+
+        return new CustomerResponse(existingCustomer);
+    } 
 
     public async Task<CustomerResponse> SaveAsync(Customer customer) {
         try
@@ -33,7 +52,7 @@ public class CustomerService : ICustomerService {
         }
     }
 
-    public async Task<CustomerResponse> UpdateAsync(int id, Customer customer)
+    public async Task<CustomerResponse> UpdateAsync(long id, Customer customer)
     {
         var existingCustomer = await _customerRepository.FindByIdAsync(id);
         if (existingCustomer == null)
@@ -56,7 +75,7 @@ public class CustomerService : ICustomerService {
         }
     }
 
-    public async Task<CustomerResponse> DeleteAsync(int id) {
+    public async Task<CustomerResponse> DeleteAsync(long id) {
         var existingCustomer = await _customerRepository.FindByIdAsync(id);
 
         if (existingCustomer == null)
