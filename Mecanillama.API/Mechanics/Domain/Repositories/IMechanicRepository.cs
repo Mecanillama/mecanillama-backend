@@ -6,7 +6,8 @@ public interface IMechanicRepository
 {
     Task<IEnumerable<Mechanic>> ListAsync();
     Task AddAsync(Mechanic mechanic);
-    Task<Mechanic> FindByIdAsync(int id);
+    Task<Mechanic> FindByIdAsync(long id);
+    Task<Mechanic> FindByUserIdAsync(long userId);
     void Update(Mechanic mechanic);
     void Remove(Mechanic mechanic);
 }

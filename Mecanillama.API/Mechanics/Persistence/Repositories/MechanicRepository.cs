@@ -23,9 +23,16 @@ public class MechanicRepository : BaseRepository, IMechanicRepository
         await _context.Mechanics.AddAsync(mechanic);
     }
 
-    public async Task<Mechanic> FindByIdAsync(int id)
+    public async Task<Mechanic> FindByIdAsync(long id)
     {
         return await _context.Mechanics.FindAsync(id);
+    }
+    
+    public async Task<Mechanic> FindByUserIdAsync(long userId)
+    {
+        return await _context.Mechanics
+            .Where(p => p.UserId == userId)
+            .FirstOrDefaultAsync();
     }
 
     public void Update(Mechanic mechanic)
