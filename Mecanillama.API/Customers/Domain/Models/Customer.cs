@@ -12,5 +12,4 @@ public class Customer
     public string CarMake { get; set; }
     public long UserId { get; set; }
     
-    public IList<Appointment> Appointments { get; set; } = new List<Appointment>();
 }

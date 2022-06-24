@@ -19,6 +19,8 @@ public class AppDbContext : DbContext
     protected override void OnModelCreating(ModelBuilder builder)
     {
         base.OnModelCreating(builder);
+        //Users
+
         //Customers
         builder.Entity<Customer>().ToTable("Customers");
         builder.Entity<Customer>().HasKey(p => p.Id);
@@ -28,9 +30,7 @@ public class AppDbContext : DbContext
         builder.Entity<Customer>().Property(p => p.Address).IsRequired().HasMaxLength(200);
         
         //Relationships
-        builder.Entity<Customer>().HasMany(p => p.Appointments)
-            .WithOne(p => p.Customer)
-            .HasForeignKey(p => p.CustomerId);
+        //empty
         
         //Mechanics
         builder.Entity<Mechanic>().ToTable("Mechanics");
