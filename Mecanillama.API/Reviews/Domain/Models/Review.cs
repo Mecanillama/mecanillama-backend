@@ -1,4 +1,6 @@
 ﻿
+using Mecanillama.API.Mechanics.Domain.Models;
+
 namespace Mecanillama.API.Reviews.Domain.Models;
 
 public class Review
@@ -7,6 +9,8 @@ public class Review
     public int Id { get; set; }
     public string Comment { get; set; }
     public int Score { get; set; }
-
-    //Relationships
+    
+    public long MechanicId { get; set; }
+    public Mechanic Mechanic { get; set; } 
+    
 }

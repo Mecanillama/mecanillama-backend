@@ -2,6 +2,7 @@
 using Mecanillama.API.Customers.Domain.Model;
 using Mecanillama.API.Mechanics.Domain.Models;
 using Mecanillama.API.Reviews.Domain.Models;
+using Mecanillama.API.Security.Domain.Models;
 using Mecanillama.API.Shared.Extensions;
 using Microsoft.EntityFrameworkCore;
 
@@ -20,7 +21,10 @@ public class AppDbContext : DbContext
     {
         base.OnModelCreating(builder);
         //Users
-
+        builder.Entity<User>().ToTable("Users");
+        
+        
+        
         //Customers
         builder.Entity<Customer>().ToTable("Customers");
         builder.Entity<Customer>().HasKey(p => p.Id);
@@ -28,9 +32,12 @@ public class AppDbContext : DbContext
         builder.Entity<Customer>().Property(p => p.Name).IsRequired().HasMaxLength(200);
         builder.Entity<Customer>().Property(p => p.CarMake).IsRequired().HasMaxLength(200);
         builder.Entity<Customer>().Property(p => p.Address).IsRequired().HasMaxLength(200);
+        builder.Entity<Customer>().Property(p => p.UserId).IsRequired();
         
         //Relationships
-        //empty
+        builder.Entity<Customer>().HasMany(p => p.Appointments)
+            .WithOne(p => p.Customer)
+            .HasForeignKey(p => p.CustomerId);
         
         //Mechanics
         builder.Entity<Mechanic>().ToTable("Mechanics");
@@ -40,9 +47,14 @@ public class AppDbContext : DbContext
         builder.Entity<Mechanic>().Property(p => p.Description).IsRequired().HasMaxLength(300);
         builder.Entity<Mechanic>().Property(p => p.Phone).IsRequired();
         builder.Entity<Mechanic>().Property(p => p.Address).IsRequired().HasMaxLength(200);
+        builder.Entity<Mechanic>().Property(p => p.UserId).IsRequired();
 
         //Relationships
         builder.Entity<Mechanic>().HasMany(p => p.Appointments)
+            .WithOne(p => p.Mechanic)
+            .HasForeignKey(p => p.MechanicId);
+        
+        builder.Entity<Mechanic>().HasMany(p => p.Reviews)
             .WithOne(p => p.Mechanic)
             .HasForeignKey(p => p.MechanicId);
         

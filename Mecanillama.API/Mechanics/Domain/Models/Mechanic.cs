@@ -1,4 +1,5 @@
 ﻿using Mecanillama.API.Appointments.Domain.Models;
+using Mecanillama.API.Reviews.Domain.Models;
 using Mecanillama.API.Shared.Domain.Models;
 
 namespace Mecanillama.API.Mechanics.Domain.Models;
@@ -15,5 +16,6 @@ public class Mechanic
 
     //Relationships
     public IList<Appointment> Appointments { get; set; } = new List<Appointment>();
-    //public IList<Review> Reviews {get; set;} = new List<Review>();
+    
+    public IList<Review> Reviews {get; set;} = new List<Review>();
 }
