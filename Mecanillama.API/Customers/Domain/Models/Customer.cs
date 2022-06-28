@@ -1,13 +1,15 @@
 ﻿using Mecanillama.API.Appointments.Domain.Models;
-using Mecanillama.API.Shared.Domain.Models;
 
 namespace Mecanillama.API.Customers.Domain.Model;
 
-public class Customer : Person
+public class Customer 
 {
     // Properties
     public long Id { get; set; }
+    public string Name { get; set; }
+    public string Address { get; set; }
     public string CarMake { get; set; }
-
-    //Relationships (specified in Person.cs)
+    public long UserId { get; set; }
+    //Relationships
+    public IList<Appointment> Appointments { get; set; } = new List<Appointment>();
 }

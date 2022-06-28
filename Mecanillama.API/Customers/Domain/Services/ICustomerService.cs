@@ -6,7 +6,9 @@ namespace Mecanillama.API.Customers.Domain.Services;
 public interface ICustomerService
 {
     Task<IEnumerable<Customer>> ListAsync();
+    Task<CustomerResponse> GetByIdAsync(long id);
+    Task<CustomerResponse> GetByUserIdAsync(long userId);
     Task<CustomerResponse> SaveAsync(Customer category);
-    Task<CustomerResponse> UpdateAsync(int id, Customer category);
-    Task<CustomerResponse> DeleteAsync(int id);
+    Task<CustomerResponse> UpdateAsync(long id, Customer customer);
+    Task<CustomerResponse> DeleteAsync(long id);
 }

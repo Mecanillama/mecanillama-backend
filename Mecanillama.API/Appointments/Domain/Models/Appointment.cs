@@ -12,7 +12,6 @@ public class Appointment
     //Relationships - many to many
     public long CustomerId { get; set; }
     public long MechanicId { get; set; }
-    
     public Customer Customer { get; set; }
     public Mechanic Mechanic { get; set; } 
     

@@ -1,12 +1,22 @@
 ﻿using System.ComponentModel.DataAnnotations;
-using Mecanillama.API.Shared.Resources;
 
 namespace Mecanillama.API.Customers.Resources;
 
-public class SaveCustomerResource: SavePersonResource
+public class SaveCustomerResource
 {
+    [Required]
+    [MaxLength(200)]
+    public string Name { get; set; }
+
+    [Required]
+    [MaxLength(200)]
+    public string Address { get; set; }
+    
     [Required]
     [MaxLength(40)]
     public string CarMake { get; set; }
+    
+    [Required]
+    public long UserId { get; set; }
 
 }

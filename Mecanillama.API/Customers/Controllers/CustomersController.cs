@@ -34,6 +34,48 @@ public class CustomersController : ControllerBase {
     }
     
     [SwaggerOperation(
+        Summary = "Get Customer by Id",
+        Description = "Get Customer by Id",
+        OperationId = "GetCustomerById")]
+    [SwaggerResponse(200, "Customer returned", typeof(CustomerResource))]
+
+    [HttpGet("{id}")]
+    [ProducesResponseType(typeof(CustomerResource), 200)]
+    [ProducesResponseType(typeof(BadRequestResult), 404)]
+    public async Task<IActionResult> GetByIdAsync(long id)
+    {
+        var result = await _customerService.GetByIdAsync(id);
+
+        if (!result.Success)
+            return BadRequest(result.Message);
+
+        var customerResult = _mapper.Map<Customer, CustomerResource>(result.Resource);
+
+        return Ok(customerResult);
+    }
+
+    [SwaggerOperation(
+        Summary = "Get Customer by User Id",
+        Description = "Get Customer by User Id",
+        OperationId = "GetCustomerByUserId")]
+    [SwaggerResponse(200, "Customer returned", typeof(CustomerResource))]
+
+    [HttpGet("{userId}")]
+    [ProducesResponseType(typeof(CustomerResource), 200)]
+    [ProducesResponseType(typeof(BadRequestResult), 404)]
+    public async Task<IActionResult> GetByUserIdAsync(long userId)
+    {
+        var result = await _customerService.GetByUserIdAsync(userId);
+
+        if (!result.Success)
+            return BadRequest(result.Message);
+
+        var customerResult = _mapper.Map<Customer, CustomerResource>(result.Resource);
+
+        return Ok(customerResult);
+    }
+    
+    [SwaggerOperation(
         Summary = "Save Customers",
         Description = "Save Customers",
         OperationId = "SaveCustomer")]
@@ -90,7 +132,7 @@ public class CustomersController : ControllerBase {
         OperationId = "DeleteCustomer")]
     [SwaggerResponse(200, "Customer deleted", typeof(CustomerResource))]
     [HttpDelete("{id}")]
-    public async Task<IActionResult> DeleteAsync(int id)
+    public async Task<IActionResult> DeleteAsync(long id)
     {
         var result = await _customerService.DeleteAsync(id);
         

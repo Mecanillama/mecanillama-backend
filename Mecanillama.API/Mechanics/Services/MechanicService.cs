@@ -21,6 +21,26 @@ public class MechanicService : IMechanicService
     {
         return await _mechanicRepository.ListAsync();
     }
+    
+    public async Task<MechanicResponse> GetByIdAsync(long id)
+    {
+        var existingMechanic = await _mechanicRepository.FindByIdAsync(id);
+
+        if (existingMechanic == null)
+            return new MechanicResponse("Mechanic not found.");
+
+        return new MechanicResponse(existingMechanic);
+    }
+
+    public async Task<MechanicResponse> GetByUserIdAsync(long userId)
+    {
+        var existingMechanic = await _mechanicRepository.FindByUserIdAsync(userId);
+
+        if (existingMechanic == null)
+            return new MechanicResponse("Mechanic not found.");
+
+        return new MechanicResponse(existingMechanic);
+    } 
 
     public async Task<MechanicResponse> SaveAsync(Mechanic mechanic)
     {
@@ -64,7 +84,7 @@ public class MechanicService : IMechanicService
         var existingMechanic = await _mechanicRepository.FindByIdAsync(id);
 
         if (existingMechanic == null)
-            return new MechanicResponse("Customer not found.");
+            return new MechanicResponse("Mechanic not found.");
 
         try
         {
