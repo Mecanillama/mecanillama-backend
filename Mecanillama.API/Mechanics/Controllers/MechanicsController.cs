@@ -61,7 +61,7 @@ public class MechanicsController : ControllerBase
         OperationId = "GetMechanicByUserId")]
     [SwaggerResponse(200, "Mechanic returned", typeof(MechanicResource))]
 
-    [HttpGet("users/{userId}")]
+    [HttpGet("{userId}")]
     [ProducesResponseType(typeof(MechanicResource), 200)]
     [ProducesResponseType(typeof(BadRequestResult), 404)]
     public async Task<IActionResult> GetByUserIdAsync(long userId)
