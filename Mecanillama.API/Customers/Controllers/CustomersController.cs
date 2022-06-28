@@ -60,7 +60,7 @@ public class CustomersController : ControllerBase {
         OperationId = "GetCustomerByUserId")]
     [SwaggerResponse(200, "Customer returned", typeof(CustomerResource))]
 
-    [HttpGet("{userId}")]
+    [HttpGet("uid/{userId}")]
     [ProducesResponseType(typeof(CustomerResource), 200)]
     [ProducesResponseType(typeof(BadRequestResult), 404)]
     public async Task<IActionResult> GetByUserIdAsync(long userId)
